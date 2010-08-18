@@ -1,11 +1,6 @@
 (function() {
 
-var currentTest, currentModule;
-
-QUnit.moduleStart = function(name, testEnvironment) {
-	//print("#####", name, "#####");
-	currentModule = name;
-};
+var currentTest;
 
 QUnit.testStart = function(name, testEnvironment) {
 	//print("==", name, "==");
@@ -17,7 +12,7 @@ QUnit.log = function(result, message) {
 		var msg = message.
 			replace(/<span.*?>(.*?)<\/span>/g, "$1"). // remove spurious markup -- XXX: might affect tests' actual/expected data
 			replace(/^undefined, /, ""); // ignore missing descriptions
-		print("ERROR (" + currentModule + "::" + currentTest + ")",  msg);
+		print("ERROR (" + QUnit.config.currentModule + "::" + currentTest + ")",  msg);
 	}
 };
 

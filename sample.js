@@ -7,7 +7,7 @@ test("Alpha", function() {
 });
 
 test("Bravo", function() {
-	strictEqual("foo", "foo", "test1");
+	strictEqual("foo", "foo");
 	strictEqual("foo", "bar", "test2");
 	strictEqual("foo", "baz");
 });

@@ -29,4 +29,4 @@ if [ -n "$verbose" ]; then
 	cfg='-e QUnit.config.headless.verbose=true;' # XXX: must not contain spaces
 fi
 
-js -f qunit.js -f headless.js $cfg $testfiles -f report.js
+js -f lib/qunit.js -f lib/headless.js $cfg $testfiles -f lib/report.js

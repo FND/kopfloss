@@ -1,5 +1,5 @@
-.PHONY: qunit
+.PHONY: lib
 
-qunit:
-	curl -s -o qunit.js \
+lib:
+	curl -s -o lib/qunit.js \
 		http://github.com/jquery/qunit/raw/master/qunit/qunit.js

@@ -3,7 +3,7 @@
 # QUnit for Spidermonkey
 #
 # Usage:
-#   $ run.sh [-v] <testfiles>
+#   $ run.sh [-v] [-x] <testfiles>
 
 set -e
 
@@ -12,10 +12,17 @@ die() {
     exit 1
 }
 
-if [ "$1" = "-v" ]; then
-	verbose=true
-	shift
-fi
+while getopts "vx" opt; do
+	case "$opt" in
+		"v" )
+			verbose=true
+			;;
+		"x" )
+			abort=true
+			;;
+	esac
+done
+shift $(( $OPTIND - 1 ))
 
 if [ -z "$1" ]; then
 	die "no test files specified"
@@ -25,8 +32,12 @@ for filename in $@; do
 	testfiles="$testfiles -f $filename"
 done
 
-if [ -n "$verbose" ]; then
-	cfg='-e QUnit.config.headless.verbose=true;' # XXX: must not contain spaces
+cfg='' # TODO: use array to allow for spaces in expressions
+if [ "$verbose" = "true" ]; then
+	cfg="$cfg -e QUnit.config.headless.verbose=true;"
+fi
+if [ "$abort" = "true" ]; then
+	cfg="$cfg -e QUnit.config.headless.abortOnFail=true;"
 fi
 
 js -f lib/qunit.js -f lib/headless.js $cfg $testfiles -f lib/report.js

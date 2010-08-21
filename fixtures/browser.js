@@ -8,9 +8,11 @@ navigator = {
 	userAgent: ""
 };
 
-window = {};
+window = {
+	location: {}
+};
 
-location = window.location = {};
+location = window.location;
 
 //
 // DOM

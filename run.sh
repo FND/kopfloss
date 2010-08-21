@@ -32,7 +32,7 @@ for filename in $@; do
 	testfiles="$testfiles -f $filename"
 done
 
-cfg='' # TODO: use array to allow for spaces in expressions
+cfg='' # TODO: use array to allow for spaces in expressions? generate temporary file?
 if [ "$verbose" = "true" ]; then
 	cfg="$cfg -e QUnit.config.headless.verbose=true;"
 fi
@@ -40,4 +40,6 @@ if [ "$abort" = "true" ]; then
 	cfg="$cfg -e QUnit.config.headless.abortOnFail=true;"
 fi
 
-js -f lib/qunit.js -f lib/headless.js $cfg $testfiles -f lib/report.js
+js -f fixtures/spidermonkey.js -f lib/qunit.js -f lib/headless.js \
+	$cfg $testfiles \
+	-f lib/report.js

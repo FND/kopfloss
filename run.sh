@@ -25,7 +25,7 @@ done
 shift $(( $OPTIND - 1 ))
 
 if [ -z "$1" ]; then
-	die "no test files specified"
+	die "ERROR: no test files specified"
 fi
 testfiles=""
 for filename in $@; do
@@ -40,6 +40,13 @@ if [ "$abort" = "true" ]; then
 	cfg="$cfg -e QUnit.config.headless.abortOnFail=true;"
 fi
 
-js -f fixtures/spidermonkey.js -f lib/qunit.js -f lib/headless.js \
-	$cfg $testfiles \
-	-f lib/report.js
+if [ -n "`which smjs`" ]; then
+	smjs -f fixtures/spidermonkey.js -f lib/qunit.js -f lib/headless.js \
+		$cfg $testfiles \
+		-f lib/report.js
+elif [ -n "`which node`" ]; then
+	# TODO: cfg support
+	node node_dispatch.js $@
+else
+	die "ERROR: failed to detect JavaScript engine"
+fi

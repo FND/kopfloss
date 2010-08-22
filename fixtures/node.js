@@ -1,0 +1,1 @@
+quit = process.exit;

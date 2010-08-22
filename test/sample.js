@@ -1,4 +1,4 @@
-(function(module, test) {
+(function(module) {
 
 module("Omega");
 
@@ -14,4 +14,4 @@ test("Bravo", function() {
 	strictEqual("foo", "baz");
 });
 
-})(QUnit.module, QUnit.test);
+})(QUnit.module);

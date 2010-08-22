@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-# QUnit for Spidermonkey
-#
 # Usage:
 #   $ run.sh [-v] [-x] <testfiles>
 

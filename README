@@ -1,0 +1,18 @@
+Kopfloss
+headless, engine-agnostic JavaScript testing with QUnit
+http://github.com/FND/kopfloss
+
+GETTING STARTED
+
+    # get dependencies (i.e. QUnit)
+    $ make lib
+
+    # run sample tests, using whatever JavaScript engine is available
+    $ ./run.sh test/sample.js
+
+CAVEATS
+
+* tests must use QUnit.module rather than global module shortcut (for Node.js)
+* not expected to _replace_ browser-based testing
+* manual mocking expected - generic commonalities will gradually evolve as
+  needed, enhancing the default set of fixtures

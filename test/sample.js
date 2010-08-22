@@ -1,3 +1,5 @@
+(function(module, test) {
+
 module("Omega");
 
 test("Alpha", function() {
@@ -11,3 +13,5 @@ test("Bravo", function() {
 	strictEqual("foo", "bar", "test2");
 	strictEqual("foo", "baz");
 });
+
+})(QUnit.module, QUnit.test);

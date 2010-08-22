@@ -9,7 +9,16 @@ navigator = {
 };
 
 window = {
-	location: {}
+	location: {
+		hash: "",
+		host: "",
+		hostname: "",
+		href: "",
+		pathname: "",
+		port: "",
+		protocol: "",
+		search: ""
+	}
 };
 
 location = window.location;

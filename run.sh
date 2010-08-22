@@ -25,10 +25,7 @@ shift $(( $OPTIND - 1 ))
 if [ -z "$1" ]; then
 	die "ERROR: no test files specified"
 fi
-testfiles=""
-for filename in $@; do
-	testfiles="$testfiles -f $filename"
-done
+testfiles=$@
 
 cfgfile="`dirname $0`/.kopfloss.cfg"
 echo "// temporary configuration settings" > $cfgfile
@@ -40,11 +37,15 @@ if [ "$abort" = "true" ]; then
 fi
 
 if [ -n "`which smjs`" ]; then
+	args=""
+	for filename in $testfiles; do
+		args="$args -f $filename"
+	done
 	smjs -f fixtures/spidermonkey.js -f lib/qunit.js -f lib/headless.js \
-		-f $cfgfile $testfiles \
+		-f $cfgfile $args \
 		-f lib/report.js
 elif [ -n "`which node`" ]; then
-	node node_dispatch.js $cfgfile $@
+	node node_dispatch.js $cfgfile $testfiles
 else
 	die "ERROR: failed to detect JavaScript engine"
 fi

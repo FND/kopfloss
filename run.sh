@@ -30,21 +30,21 @@ for filename in $@; do
 	testfiles="$testfiles -f $filename"
 done
 
-cfg='' # TODO: use array to allow for spaces in expressions? generate temporary file?
+cfgfile="`dirname $0`/.kopfloss.cfg"
+echo "// temporary configuration settings" > $cfgfile
 if [ "$verbose" = "true" ]; then
-	cfg="$cfg -e QUnit.config.headless.verbose=true;"
+	echo "QUnit.config.headless.verbose = true;" >> $cfgfile
 fi
 if [ "$abort" = "true" ]; then
-	cfg="$cfg -e QUnit.config.headless.abortOnFail=true;"
+	echo "QUnit.config.headless.abortOnFail = true;" >> $cfgfile
 fi
 
 if [ -n "`which smjs`" ]; then
 	smjs -f fixtures/spidermonkey.js -f lib/qunit.js -f lib/headless.js \
-		$cfg $testfiles \
+		-f $cfgfile $testfiles \
 		-f lib/report.js
 elif [ -n "`which node`" ]; then
-	# TODO: cfg support
-	node node_dispatch.js $@
+	node node_dispatch.js $cfgfile $@
 else
 	die "ERROR: failed to detect JavaScript engine"
 fi

@@ -8,7 +8,7 @@ var modules = [
 	"lib/headless.js",
 	"lib/report.js"
 ];
-for(var i = 2; i < process.argv.length; i++) { // ignore file and script name
+for(var i = process.argv.length - 1; i > 1; i--) { // ignore file and script name
 	var mod = process.argv[i];
 	modules.splice(3, 0, mod);
 }

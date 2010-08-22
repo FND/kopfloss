@@ -12,6 +12,8 @@ GETTING STARTED
 
 CAVEATS
 
+cf. http://fnd.lewcid.org/blog/archive/157
+
 * tests must use QUnit.module rather than global module shortcut (for Node.js)
 * not expected to _replace_ browser-based testing
 * manual mocking expected - generic commonalities will gradually evolve as

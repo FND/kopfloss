@@ -36,10 +36,10 @@ if [ "$abort" = "true" ]; then
 	echo "QUnit.config.headless.abortOnFail = true;" >> $cfgfile
 fi
 
-if [ -n "`which smjs`" ]; then
-	smjs dispatch_spidermonkey.js $cfgfile $testfiles
-elif [ -n "`which node`" ]; then
+if [ -n "`which node`" ]; then
 	node dispatch_node.js $cfgfile $testfiles
+elif [ -n "`which smjs`" ]; then
+	smjs dispatch_spidermonkey.js $cfgfile $testfiles
 else
 	die "ERROR: no JavaScript engine detected"
 fi

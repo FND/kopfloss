@@ -37,9 +37,9 @@ if [ "$abort" = "true" ]; then
 fi
 
 if [ -n "`which smjs`" ]; then
-	smjs spidermonkey_dispatch.js $cfgfile $testfiles
+	smjs dispatch_spidermonkey.js $cfgfile $testfiles
 elif [ -n "`which node`" ]; then
-	node node_dispatch.js $cfgfile $testfiles
+	node dispatch_node.js $cfgfile $testfiles
 else
 	die "ERROR: no JavaScript engine detected"
 fi

@@ -37,15 +37,9 @@ if [ "$abort" = "true" ]; then
 fi
 
 if [ -n "`which smjs`" ]; then
-	args=""
-	for filename in $testfiles; do
-		args="$args -f $filename"
-	done
-	smjs -f fixtures/spidermonkey.js -f lib/qunit.js -f lib/headless.js \
-		-f $cfgfile $args \
-		-f lib/report.js
+	smjs spidermonkey_dispatch.js $cfgfile $testfiles
 elif [ -n "`which node`" ]; then
 	node node_dispatch.js $cfgfile $testfiles
 else
-	die "ERROR: failed to detect JavaScript engine"
+	die "ERROR: no JavaScript engine detected"
 fi

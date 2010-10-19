@@ -1,5 +1,7 @@
 (function() {
 
+var NOP = function() {};
+
 //
 // environment
 //
@@ -23,11 +25,11 @@ window = {
 
 location = window.location;
 
+XMLHttpRequest = window.XMLHttpRequest = NOP;
+
 //
 // DOM
 //
-
-var NOP = function() {};
 
 var Node = function() {
 	this.style = "";
